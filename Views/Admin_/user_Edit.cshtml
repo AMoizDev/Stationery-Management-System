@@ -1,0 +1,147 @@
+﻿@model Stationery_Management_System.Models.users
+
+@{
+    ViewData["Title"] = "user_Edit";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+@* <h1>user_Edit</h1>
+
+<h4>users</h4>
+<hr />
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="user_Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="userId" />
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserEmail" class="control-label"></label>
+                <input asp-for="UserEmail" class="form-control" />
+                <span asp-validation-for="UserEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserPhone" class="control-label"></label>
+                <input asp-for="UserPhone" class="form-control" />
+                <span asp-validation-for="UserPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserPassword" class="control-label"></label>
+                <input asp-for="UserPassword" class="form-control" />
+                <span asp-validation-for="UserPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserRole" class="control-label"></label>
+                   
+                <select name="UserRole" required>
+
+                    @foreach (var role in ViewBag.UserRolesList)
+                    {
+                        <option value="@role.UserRoleId">@role.UserRoleName</option>
+                    }
+                </select>
+                <span asp-validation-for="UserRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserLimits" class="control-label"></label>
+                <input asp-for="UserLimits" class="form-control" />
+                <span asp-validation-for="UserLimits" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="users">Back to List</a>
+</div>
+ *@
+
+
+
+
+<div class="content mt-3">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>User Management</h4>
+            <h6>Update User</h6>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="user_Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="userId" />
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="UserName" class="control-label">Name</label>
+                            <input asp-for="UserName" class="form-control" required />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="UserEmail" class="control-label">Email</label>
+                            <input asp-for="UserEmail" class="form-control" required />
+                            <span asp-validation-for="UserEmail" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="UserPhone" class="control-label">Phone</label>
+                            <input asp-for="UserPhone" class="form-control" required />
+                            <span asp-validation-for="UserPhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="UserPassword" class="control-label">Password</label>
+                            <div class="pass-group">
+                                <input asp-for="UserPassword" class="pass-input" required />
+                                <span asp-validation-for="UserRole" class="text-danger"></span>
+                                <span class="fas toggle-password fa-eye-slash"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="UserRole" class="control-label">User Role</label>
+                            <select asp-for="UserRole" class="form-control" required
+                                    asp-items="@(new SelectList(ViewBag.UserRolesList, "UserRoleId", "UserRoleName"))">
+                                <option value="">Select Role</option>
+                            </select>
+                            <span asp-validation-for="UserRole" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="UserLimits" class="control-label"></label>
+                            <input asp-for="UserLimits" class="form-control" required />
+                            <span asp-validation-for="UserLimits" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="update" class="btn btn-submit me-2" />
+                    <a href="@Url.Action("users","Admin_")" class="btn btn-cancel">Cancel</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,340 @@
+﻿@model Stationery_Management_System.Models.users
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+
+<body class="account-page">
+
+    @* <div class="main-wrapper">
+        <div class="account-content">
+            <div class="login-wrapper">
+                <div class="login-content">
+                    <h4 class="text-danger text-center">@ViewBag.loginerror</h4>
+                    <form asp-action="Login" class="login-userset">
+                        <div class="login-logo">
+                            <img src="~/assets/img/SMS-removebg-preview.png" alt="img" style="width:500%">
+                        </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserEmail" class="control-label">Email</label>
+                <input asp-for="UserEmail" class="form-control" />
+                <span asp-validation-for="UserEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserPassword" class="control-label">Password</label>
+                <input maxlength="9" asp-for="UserPassword" class="form-control" />
+                <span asp-validation-for="UserPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group form-login">
+             <input type="submit" value="Sign In" class="btn btn-login" />
+            </div>
+                        <div class="signinform text-center">
+                            <h4>Don’t have an account? <a href="signup.html" class="hover-a">Sign Up</a></h4>
+                        </div>
+                        <div class="form-setlogin">
+                            <h4>Or sign up with</h4>
+                        </div>
+                        <div class="form-sociallink">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/google.png" class="me-2" alt="google">
+                                        Sign Up using Google
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/facebook.png" class="me-2" alt="google">
+                                        Sign Up using Facebook
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+        </form>
+                </div>
+                <div class="login-img">
+                    <img src="assets/img/login.jpg" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ *@
+
+
+
+    <!-- Login 8 - Bootstrap Brain Component -->
+    <section class="bg-light vh-100 d-flex align-items-center justify-content-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-xxl-11">
+                    <div class="card border-light-subtle shadow-sm">
+                        <div class="row g-0">
+                            <div class="col-12 col-md-6">
+                                <img class="img-fluid rounded-start w-100 h-100 object-fit-cover"
+                                     loading="lazy" src="./assets/img/img-02.jpg"
+                                     alt="Welcome back you've been missed!">
+                            </div>
+                            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                                <div class="col-12 col-lg-11 col-xl-10">
+                                    <div class="card-body p-3 p-md-4 p-xl-5">
+                                        <div class="text-center mb-2">
+                                            <a href="#!">
+                                                <img src="~/assets/img/SMS-removebg-preview.png" alt="Logo" width="175" height="57">
+                                            </a>
+                                        </div>
+                                        <h4 class="text-center mb-3">Welcome back you've been missed!</h4>
+                                        <h4 class="text-danger text-center">@ViewBag.loginerror</h4>
+
+                                        <form asp-action="Login" class="login-userset">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                            <div class="form-floating mb-3 mt-4">
+                                                <input asp-for="UserEmail" class="form-control" placeholder=" " />
+                                                <label asp-for="UserEmail">Email</label>
+                                                <span asp-validation-for="UserEmail" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="form-floating mb-3 mt-4">
+                                                <input maxlength="9" asp-for="UserPassword" class="form-control" placeholder=" " />
+                                                <label asp-for="UserPassword">Password</label>
+                                                <span asp-validation-for="UserPassword" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="d-grid">
+                                                <button class="btn" type="submit">Log In</button>
+                                            </div>
+                                        </form>
+
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <style>
+        body{
+            overflow-y:hidden;
+        }
+        .form-floating .form-control:focus ~ label,
+        .form-floating .form-control:not(:placeholder-shown) ~ label {
+            transform: translateY(-30%) scale(0.85);
+            top: 2px;
+            left: 4px;
+            background: transparent;
+            padding: 0 5px;
+            color: #ff6600; /* Tumhari theme ka color */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-floating label {
+            transition: all 0.3s ease-in-out;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .form-floating .form-control {
+            padding-top: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .btn{
+            border:1px solid black;
+            color : white;
+            background-color: black;
+        }
+
+        .btn:hover{
+           
+                color: black;
+                background-color: white;
+        }
+    </style>
+
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+
+    <script src="assets/js/feather.min.js"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
+
+
+
+@* @model Stationery_Management_System.Models.users
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #FE9F43, #FE9F43);
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 380px;
+            transition: transform 0.3s ease-in-out;
+            background-size: cover;
+        }
+
+            .login-container:hover {
+                transform: translateY(-5px);
+            }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 5px solid #ff758c;
+            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .logo-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: #f5f5f5;
+            font-size: 16px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .login-container input:focus {
+                outline: none;
+                background: #fff;
+                border: 2px solid #ff758c;
+                box-shadow: 0 0 8px rgba(255, 117, 140, 0.5);
+            }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .login-container button:hover {
+                background: linear-gradient(135deg, #ff5e78, #ff6c98);
+                transform: scale(1.05);
+            }
+
+        .login-container p {
+            margin-top: 15px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .login-container a {
+            text-decoration: none;
+            color: #ff758c;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+            .login-container a:hover {
+                color: #333;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-container">
+            <img src="/assets/img/logo.png" alt="User Avatar">
+        </div>
+        <h2>Welcome Back</h2>
+        <form asp-action="Login" method="post">
+            <input asp-for="UserEmail" type="email" placeholder="Email" required>
+            <span asp-validation-for="UserEmail" class="text-danger"></span>
+
+            <input asp-for="UserPassword" type="password" placeholder="Password" required>
+            <span asp-validation-for="UserPassword" class="text-danger"></span>
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Not Registered? <a href="signup.html">Create an Account</a></p>
+    </div>
+</body>
+</html> *@
+
+

@@ -1,0 +1,286 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+@{
+    var userlimit = Context.Session.GetInt32("Userlimits");
+
+}
+
+
+<h1 class="ms-4 mt-3"> Welcome Back @ViewBag.username</h1>
+@* <h1> @userlimit</h1> *@
+
+
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6 col-12">
+            <div class="dash-widget">
+                <div class="dash-widgetimg">
+                    <span><img src="~/assets/img/icons/dash1.svg" alt="img"></span>
+                </div>
+                <div class="dash-widgetcontent">
+                    <h5><span class="counters" data-count="@userlimit"></span></h5>
+                    <h6>Your Purchase Limit</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+            <div class="dash-widget dash1">
+                <div class="dash-widgetimg">
+                    <span><img src="~/assets/img/icons/dash2.svg" alt="img"></span>
+                </div>
+                <div class="dash-widgetcontent">
+                    <h5><span class="counters" data-count="@ViewBag.TotalPurchaseAmount"></span></h5>
+                    <h6>Total Purch Amount</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+            <div class="dash-widget dash2">
+                <div class="dash-widgetimg">
+                    <span><img src="~/assets/img/icons/dash3.svg" alt="img"></span>
+                </div>
+                <div class="dash-widgetcontent">
+                    <h5><span class="counters" data-count="@ViewBag.TotalRequests"></span></h5>
+                    <h6>Total Requests</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+            <div class="dash-widget dash3">
+                <div class="dash-widgetimg">
+                    <span><img src="~/assets/img/icons/dash4.svg" alt="img"></span>
+                </div>
+                <div class="dash-widgetcontent">
+                    <h5><span class="counters" data-count="@ViewBag.PendingRequests"></span></h5>
+                    <h6>Pending Request</h6>
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.userRoleId < 3 ) { 
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count">
+                <div class="dash-counts">
+                    <h4>@ViewBag.totalusers</h4>
+                    <h5>Users</h5>
+                </div>
+                <div class="dash-imgs">
+                    <i data-feather="user"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count das1">
+                <div class="dash-counts">
+                    <h4>@ViewBag.TotalPurchaseBills</h4>
+                    <h5>Total used of stationery </h5>
+                </div>
+                <div class="dash-imgs">
+                    <i data-feather="file-text"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count das2">
+                <div class="dash-counts">
+                    <h4>@ViewBag.StationeryUsage</h4>
+                    <h5>Stationeries Used</h5>
+                </div>
+                <div class="dash-imgs">
+                    <img src="/assets/img/icons/product.svg" alt="img">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count das3">
+                <div class="dash-counts">
+                    <h4>@ViewBag.AvailableStock</h4>
+                    <h5>Available Stationeries</h5>
+                </div>
+                <div class="dash-imgs">
+                    <img src="/assets/img/icons/product.svg" alt="img">
+
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-lg-7 col-sm-12 col-12 d-flex">
+            <div class="card flex-fill">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">Purchase & Sales</h5>
+                    <div class="graph-sets">
+                        <ul>
+                            <li>
+                                <span>Sales</span>
+                            </li>
+                            <li>
+                                <span>Purchase</span>
+                            </li>
+                        </ul>
+                        <div class="dropdown">
+                            <button class="btn btn-white btn-sm dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                2022 <img src="~/assets/img/icons/dropdown.svg" alt="img" class="ms-2">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item">2022</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item">2021</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="dropdown-item">2020</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="sales_charts"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-12 d-flex">
+            <div class="card flex-fill">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">Recently Added stationeries</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Sno</th>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Image</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.RecentlyAddedStock != null && ViewBag.RecentlyAddedStock.Count > 0)
+                                {
+                                    int sno = 1;
+                                    foreach (var item in ViewBag.RecentlyAddedStock)
+                                    {
+                                        <tr>
+                                            <td>@sno</td>
+                                            <td>@item.Stationery_Name</td>
+                                            <td>@item.Stationery_Price</td>
+                                            <td>
+                                                <img src="@Url.Content("~/stationeyImages/" + item.Stationery_Image)"
+                                                     style="height:50px; width:80px;"
+                                                     alt="@item.Stationery_Name" />
+                                            </td>
+                                        </tr>
+                                        sno++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="3" class="text-center">No recent stock available.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card mb-0">
+        <div class="card-body">
+            <h4 class="card-title">Low Stock Stationeries</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>SNo</th>
+                            <th>Stationery Name</th>
+                            <th>Stationery Quantity</th>
+                            <th>Stationery Price</th>
+                            <th>Stationery Image</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.LowStockItems != null && ViewBag.LowStockItems.Count > 0)
+                        {
+                            int sno = 1;
+                            foreach (var item in ViewBag.LowStockItems)
+                            {
+                                <tr>
+                                    <td>@sno</td> <!-- SNo fix -->
+                                    <td>@item.Stationery_Name</td>
+                                    <td style="color:red;">@item.Stationery_Quantity</td>
+                                    <td>@item.Stationery_Price</td> <!-- Price fix -->
+                                    <td>
+                                        <img src="@Url.Content("~/stationeyImages/" + item.Stationery_Image)"
+                                             style="height:50px; width:80px;"
+                                             alt="@item.Stationery_Name" />
+                                    </td>
+                                </tr>
+                                sno++;
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center">No expired products available.</td> <!-- colspan fix -->
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+                                <script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var usageData = @Html.Raw(Json.Serialize(ViewBag.MonthlyUsageReport));
+
+    var labels = usageData.map(item => item.StationeryName);
+    var values = usageData.map(item => item.TotalUsed);
+
+    var ctx = document.getElementById("usageChart").getContext("2d");
+
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Monthly Stationery Usage",
+                data: values,
+                backgroundColor: "rgba(54, 162, 235, 0.6)",
+                borderColor: "rgba(54, 162, 235, 1)",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+
+                                </script>

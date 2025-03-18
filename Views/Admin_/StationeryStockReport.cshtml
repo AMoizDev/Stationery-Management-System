@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "StationeryStockReport";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+
+<div class="container my-3">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>Stationery Stock Report</h4>
+            <h6>Check stock , used  and remainig of each stationery item</h6>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Stationery ID</th>
+                            <th>Stationery Name</th>
+                            <th>Total Added</th>
+                            <th>Total Used</th>
+                            <th>Remaining Stock</th>
+                        </tr>
+                    </thead>
+
+    <tbody>
+        @foreach (var item in ViewBag.StockData)
+        {
+            <tr>
+                <td>@item.StationeryID</td>
+                <td>@item.ItemName</td>
+                <td>@item.TotalAdded</td>
+                <td>@item.TotalUsed</td>
+                <td>@item.RemainingStock</td>
+            </tr>
+        }
+    </tbody>
+                </table>
+            </div>
+
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,338 @@
+﻿@model IEnumerable<Stationery_Management_System.Models.Stationery>
+
+@* @{
+    ViewData["Title"] = "stationery";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+<h1>stationery</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Stationery_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stationery_Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stationery_Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stationery_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stationery_Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stationery_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stationery_Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stationery_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stationery_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stationery_Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles.UserRoleId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Stationery_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Stationery_Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Stationery_Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@
+
+
+
+@{
+    ViewData["Title"] = "stationery";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+    var addMessage = TempData["Addstationery"] as string;
+    var editMessage = TempData["stat_Edit"] as string;
+    var DeleteMessage = TempData["stat_Delete"] as string;
+}
+
+
+<div class="container my-3">
+
+    @* <h1>stationery</h1> *@
+    <h4 class="text-success">@addMessage</h4>
+    <h4 class="text-success">@editMessage</h4>
+    <h4 class="text-danger">@DeleteMessage</h4>
+
+   
+
+    <div class="page-header">
+        <div class="page-title">
+            <h4>stationeries List</h4>
+            <h6>Manage your stationeries</h6>
+        </div>
+        <div class="page-btn">
+            <a asp-action="Add_stationery" class="btn btn-added">
+                <img src="~/assets/img/icons/plus.svg" alt="img"
+                     class="me-1">Add New stationeries
+            </a>
+        </div>
+    </div>
+    <div class="card">
+    <div class="card-body">
+        <div class="table-top">
+                <div class="search-set">
+
+                    <div class="search-input">
+                        <a class="btn btn-searchset">
+                            <img src="~/assets/img/icons/search-white.svg"
+                                 alt="img">
+                        </a>
+                    </div>
+                </div>
+            <div class="wordset">
+                <ul>
+                    <li>
+                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                            <img src="~/assets/img/icons/pdf.svg" alt="img">
+                        </a>
+                    </li>
+                    <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel" asp-action="GetStationeryReport">
+                            <img src="~/assets/img/icons/excel.svg" alt="img">
+                        </a>
+                    </li>
+                    <li>
+                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                            <img src="~/assets/img/icons/printer.svg" alt="img">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="table-responsive">
+
+    <table class="table">
+        <thead>
+            <tr>
+                            <th>
+                                <label class="checkboxs">
+                                    <input type="checkbox" id="select-all">
+                                    <span class="checkmarks"></span>
+                                </label>
+                            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stationery_Name)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stationery_Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stationery_Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stationery_Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stationery_Image)
+                </th>
+                <th>
+                    @* @Html.DisplayNameFor(model => model.Roles) *@
+                    Assigned To
+
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                                <td>
+                                    <label class="checkboxs">
+                                        <input type="checkbox">
+                                        <span class="checkmarks"></span>
+                                    </label>
+                                </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stationery_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stationery_Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stationery_Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stationery_Quantity)
+                    </td>
+                    <td>
+                        <img src="~/stationeyImages/@Html.DisplayFor(modelItem => item.Stationery_Image)" style="height:80px; width:110px;" alt=" @Html.DisplayFor(modelItem => item.Stationery_Name)" />
+
+
+                    </td>
+                     @if (item.Roles is not null) { 
+                    <td>
+                                   
+                        @Html.DisplayFor(modelItem => item.Roles.UserRoleName)
+                                    
+                                   
+                                   
+                    </td>
+                    }
+                    else{
+                        <td>All</td>
+                    }
+                    <td>
+                        <a class="me-3" asp-action="Detail" asp-route-id="@item.Stationery_Id">
+                            <img src="~/assets/img/icons/eye.svg" alt="img">
+                        </a>
+                        <a class="me-3" asp-action="Edit" asp-route-id="@item.Stationery_Id">
+                            <img src="~/assets/img/icons/edit.svg" alt="img">
+                        </a>
+                        <a class="confirm-text" asp-action="Delete" asp-route-id="@item.Stationery_Id">
+                            <img src="~/assets/img/icons/delete.svg" alt="img">
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+            
+        </div>
+    </div>
+</div> 
+
+
+
+@* <div class="card">
+    <div class="card-body">
+        <div class="table-top">
+            <div class="search-set">
+
+                <div class="search-input">
+                    <a class="btn btn-searchset">
+                        <img src="assets/img/icons/search-white.svg"
+                             alt="img">
+                    </a>
+                </div>
+            </div>
+            <div class="wordset">
+                <ul>
+                    <li>
+                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                            <img src="~/assets/img/icons/pdf.svg" alt="img">
+                        </a>
+                    </li>
+                    <li>
+                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel">
+                            <img src="~/assets/img/icons/excel.svg" alt="img">
+                        </a>
+                    </li>
+                    <li>
+                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                            <img src="~/assets/img/icons/printer.svg" alt="img">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table datanew">
+                <thead>
+                    <tr>
+                        <th>
+                            <label class="checkboxs">
+                                <input type="checkbox" id="select-all">
+                                <span class="checkmarks"></span>
+                            </label>
+                        </th>
+                        <th>Stationery Name</th>
+                        <th>Stationery Description</th>
+                        <th>Stationery Price </th>
+                        <th>Stationery Quantity</th>
+                        <th>Stationery Image</th>
+                        <th>Assign To</th>
+                        
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            <label class="checkboxs">
+                                <input type="checkbox">
+                                <span class="checkmarks"></span>
+                            </label>
+                        </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationery_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationery_Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationery_Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stationery_Quantity)
+                            </td>
+                            <td>
+                                <img src="~/stationeyImages/@Html.DisplayFor(modelItem => item.Stationery_Image)" style="height:80px; width:110px;" alt=" @Html.DisplayFor(modelItem => item.Stationery_Name)" />
+
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Roles.UserRoleName)
+                            </td>
+
+                            <td>
+                                <a class="me-3" asp-action="Detail" asp-route-id="@item.Stationery_Id">
+                                    <img src="~/assets/img/icons/eye.svg" alt="img">
+                                </a>
+                                <a class="me-3" asp-action="Edit" asp-route-id="@item.Stationery_Id">
+                                    <img src="~/assets/img/icons/edit.svg" alt="img">
+                                </a>
+                                <a class="confirm-text" asp-action="Delete" asp-route-id="@item.Stationery_Id">
+                                    <img src="~/assets/img/icons/delete.svg" alt="img">
+                                </a>
+                            </td>
+                       
+                    </tr>
+            }
+                   
+                        
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> *@

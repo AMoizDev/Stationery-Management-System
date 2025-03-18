@@ -1,0 +1,406 @@
+﻿
+@{
+    ViewData["Title"] = "All_stationery";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+@model IEnumerable<Stationery_Management_System.Models.Stationery>
+@{
+	ViewData["Title"] = "All_stationery";
+	Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Bootstrap Multiple Item Product Carousel</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<style>
+		body {
+			background: #e2eaef;
+			font-family: "Open Sans", sans-serif;
+		}
+
+		.sidebar a:hover,
+		.header a:hover {
+			text-decoration: none !important;
+			border-bottom: none !important;
+		}
+
+		.header .user-img img {
+			width: 38px;
+			border-radius: 50%;
+			margin-top: 0px;
+		}
+
+		h2 {
+			color: #000;
+			font-size: 26px;
+			font-weight: 300;
+			text-align: center;
+			text-transform: uppercase;
+			position: relative;
+			margin: 30px 0 60px;
+		}
+
+			h2::after {
+				content: "";
+				width: 100px;
+				position: absolute;
+				margin: 0 auto;
+				height: 4px;
+				border-radius: 1px;
+				background: orange;
+				left: 0;
+				right: 0;
+				bottom: -20px;
+			}
+
+		.carousel {
+			margin: 50px auto;
+			padding: 0 70px;
+		}
+
+			.carousel .item {
+				color: #747d89;
+				min-height: 325px;
+				text-align: center;
+				overflow: hidden;
+			}
+
+			.carousel .thumb-wrapper {
+				padding: 25px 15px;
+				background: #fff;
+				border-radius: 6px;
+				text-align: center;
+				position: relative;
+				box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+			}
+
+			.carousel .item .img-box {
+				height: 120px;
+				margin-bottom: 20px;
+				width: 100%;
+				position: relative;
+			}
+
+			.carousel .item img {
+				max-width: 100%;
+				max-height: 100%;
+				display: inline-block;
+				position: absolute;
+				bottom: 0;
+				margin: 0 auto;
+				left: 0;
+				right: 0;
+			}
+
+			.carousel .item h4 {
+				font-size: 18px;
+			}
+
+			.carousel .item h4, .carousel .item p, .carousel .item ul {
+				margin-bottom: 5px;
+			}
+
+			.carousel .thumb-content .btn {
+				color: #fff;
+				font-size: 11px;
+				text-transform: uppercase;
+				font-weight: bold;
+				background: orange;
+				border: 1px solid orange;
+				padding: 6px 14px;
+				margin-top: 5px;
+				line-height: 16px;
+				border-radius: 20px;
+			}
+
+				.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+					color: orange;
+					;
+					background: white;
+					box-shadow: none;
+				}
+
+				.carousel .thumb-content .btn i {
+					font-size: 14px;
+					font-weight: bold;
+					margin-left: 5px;
+				}
+
+			.carousel .item-price {
+				font-size: 13px;
+				padding: 2px 0;
+			}
+
+				.carousel .item-price strike {
+					opacity: 0.7;
+					margin-right: 5px;
+				}
+
+		.carousel-control-prev, .carousel-control-next {
+			height: 44px;
+			width: 40px;
+			background: #7ac400;
+			margin: auto 0;
+			border-radius: 4px;
+			opacity: 0.8;
+		}
+
+			.carousel-control-prev:hover, .carousel-control-next:hover {
+				background: #78bf00;
+				opacity: 1;
+			}
+
+			.carousel-control-prev i, .carousel-control-next i {
+				font-size: 36px;
+				position: absolute;
+				top: 50%;
+				display: inline-block;
+				margin: -19px 0 0 0;
+				z-index: 5;
+				left: 0;
+				right: 0;
+				color: #fff;
+				text-shadow: none;
+				font-weight: bold;
+			}
+
+			.carousel-control-prev i {
+				margin-left: -2px;
+			}
+
+			.carousel-control-next i {
+				margin-right: -4px;
+			}
+
+		.carousel-indicators {
+			bottom: -50px;
+		}
+
+			.carousel-indicators li, .carousel-indicators li.active {
+				width: 10px;
+				height: 10px;
+				margin: 4px;
+				border-radius: 50%;
+				border: none;
+			}
+
+			.carousel-indicators li {
+				background: rgba(0, 0, 0, 0.2);
+			}
+
+				.carousel-indicators li.active {
+					background: rgba(0, 0, 0, 0.6);
+				}
+
+		.carousel .wish-icon {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			z-index: 99;
+			cursor: pointer;
+			font-size: 16px;
+			color: #abb0b8;
+		}
+
+			.carousel .wish-icon .fa-heart {
+				color: #ff6161;
+			}
+
+		.star-rating li {
+			padding: 0;
+		}
+
+		.star-rating i {
+			font-size: 14px;
+			color: #ffc000;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+		$(".wish-icon i").click(function(){
+		$(this).toggleClass("fa-heart fa-heart-o");
+		});
+		});
+	</script>
+</head>
+<body>
+	<div class="container-xl">
+		<div class="row">
+			<div class="col-md-12" style="margin-top: 90px;">
+				<h2> <b>Stationeries</b></h2>
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+					<!-- Carousel indicators -->
+					<!-- <ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol> -->
+					<!-- Wrapper for carousel items -->
+					<div class="carousel-inner">
+						@if (Model != null && Model.Any())
+						{
+							<div class="item carousel-item active">
+								<div class="row">
+									@foreach (var item in Model)
+									{
+										<div class="col-sm-3 my-2">
+											<div class="thumb-wrapper">
+												<span class="wish-icon"><i class="fa fa-heart-o"></i></span>
+												<div class="img-box">
+													<img src="~/stationeyImages/@Html.DisplayFor(modelItem => item.Stationery_Image)"
+														 style="height:80px; width:110px;"
+														 alt="@Html.DisplayFor(modelItem => item.Stationery_Name)" class="img-fluid">
+												</div>
+												<div class="thumb-content">
+													<h4>@Html.DisplayFor(modelItem => item.Stationery_Name)</h4>
+													<p class="item-price">
+														<span class="span-actual">Rs @Html.DisplayFor(modelItem => item.Stationery_Price)</span>
+													</p>
+													<a href="#" class="btn request-btn" 
+   data-id="@item.Stationery_Id" 
+   data-name="@item.Stationery_Name"
+   data-price="@item.Stationery_Price">
+   Request
+</a>
+												</div>
+											</div>
+										</div>
+									}
+								</div>
+							</div>
+						}
+						else
+						{
+							<h3 class="text-center text-muted my-5">Stationery has not been added.</h3>
+						}
+
+					</div>
+
+					<!-- Modal -->
+					<div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="requestModalLabel">Create Request</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="requestForm">
+										<input type="hidden" id="stationaryId">
+										<input type="hidden" id="userLimit"> <!-- User Limit Field -->
+
+										<div class="form-group">
+											<label>Stationery Name</label>
+											<input type="text" id="stationaryName" class="form-control" readonly>
+										</div>
+
+										<div class="form-group">
+											<label>Quantity</label>
+											<input type="number" id="quantity" class="form-control" required>
+										</div>
+
+										<div class="form-group">
+											<label>Total Amount</label>
+											<input type="text" id="amount" class="form-control" readonly>
+										</div>
+
+										<div id="error-message" class="alert alert-danger" style="display: none;"></div> <!-- Error Message -->
+
+										<button type="submit" class="btn btn-primary">Submit Request</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<script>
+							$(document).ready(function () {
+							$(".request-btn").click(function () {
+								var id = $(this).data("id");
+								var name = $(this).data("name");
+								var price = $(this).data("price");
+
+								$("#stationaryId").val(id);
+								$("#stationaryName").val(name);
+								$("#amount").val(""); // Reset Amount Field
+								$("#quantity").val(""); // Reset Quantity Field
+								$("#quantity").attr("data-price", price); // Correct price update
+
+								$("#error-message").hide(); // Hide previous error message
+								$("#requestModal").modal("show");
+							});
+
+							$("#quantity").on("input", function () {
+								var qty = $(this).val();
+								var price = $("#quantity").attr("data-price"); // Fetch price from attribute
+
+								if (qty && qty > 0) {
+									$("#amount").val(qty * price);
+								} else {
+									$("#amount").val("");
+								}
+							});
+
+							$("#requestForm").submit(function (e) {
+								e.preventDefault();
+								var formData = {
+									stationaryId: $("#stationaryId").val(),
+									quantity: $("#quantity").val(),
+									amount: $("#amount").val()
+								};
+
+								$.ajax({
+									type: "POST",
+									url: "@Url.Action("CreateRequest", "Admin_")",
+									data: formData,
+									success: function (response) {
+										if (response.success) {
+											alert(response.message);
+											$("#requestModal").modal("hide");
+											location.reload(); // Page refresh after request
+										} else {
+											$("#error-message").text(response.message).show(); // Show error message
+											setTimeout(function () {
+												location.reload(); // Reload page after showing error
+											}, 2000);
+										}
+									},
+									error: function () {
+										alert("Error submitting request.");
+										location.reload();
+									}
+								});
+							});
+
+							// 🛠 Modal close hone par values reset karna
+							$("#requestModal").on("hidden.bs.modal", function () {
+								$("#quantity").val(""); // Reset Quantity
+								$("#amount").val("");   // Reset Amount
+								$("#quantity").attr("data-price", ""); // Reset Price Attribute
+							});
+
+							// 🛠 Modal ke X button ya background click se bhi band ho
+							$(".close, .btn-close").click(function () {
+								$("#requestModal").modal("hide");
+							});
+						});
+
+
+					</script>
+
+
+</body>
+</html>

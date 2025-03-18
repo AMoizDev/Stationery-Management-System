@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Stationery_Management_System.Models.UserRoles>
+
+@{
+    ViewData["Title"] = "roles";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+<div class="container">
+<h1>Placements</h1>
+
+<p>
+    <a asp-action="AddRoles">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserRoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRoleName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserRoleId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserRoleId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserRoleId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

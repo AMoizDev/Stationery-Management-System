@@ -1,0 +1,133 @@
+﻿@model Stationery_Management_System.Models.Stationery
+
+@{
+    ViewData["Title"] = "Add_stationery";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+@* <h1>Add_stationery</h1>
+
+<h4>Stationery</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add_stationery">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Stationery_Name" class="control-label"></label>
+                <input asp-for="Stationery_Name" class="form-control" />
+                <span asp-validation-for="Stationery_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stationery_Quantity" class="control-label"></label>
+                <input asp-for="Stationery_Quantity" class="form-control" />
+                <span asp-validation-for="Stationery_Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stationery_Description" class="control-label"></label>
+                <input asp-for="Stationery_Description" class="form-control" />
+                <span asp-validation-for="Stationery_Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stationery_Price" class="control-label"></label>
+                <input asp-for="Stationery_Price" class="form-control" />
+                <span asp-validation-for="Stationery_Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stationery_Image" class="control-label"></label>
+                <input asp-for="Stationery_Image" class="form-control" />
+                <span asp-validation-for="Stationery_Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assign_to" class="control-label"></label>
+                <select asp-for="Assign_to" class ="form-control" asp-items="ViewBag.Assign_to"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@
+
+
+<div class="content mt-3">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>Stationery Management</h4>
+            <h6>Add/Update Stationery</h6>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Add_stationery" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="Stationery_Name" class="control-label">Name</label>
+                            <input asp-for="Stationery_Name" class="form-control" required />
+                            <span asp-validation-for="Stationery_Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="Stationery_Price" class="control-label">Price</label>
+                            <input asp-for="Stationery_Price" class="form-control" required />
+                            <span asp-validation-for="Stationery_Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label asp-for="Stationery_Quantity" class="control-label">Quantity</label>
+                            <input asp-for="Stationery_Quantity" class="form-control" required />
+                            <span asp-validation-for="Stationery_Quantity" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Assign To (User Role)</label>
+                            <select asp-for="Assign_to" class="form-control" 
+                                    asp-items="@(new SelectList(ViewBag.UserRolesList, "UserRoleId", "UserRoleName"))">
+                                <option value="">Select Role</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label asp-for="Stationery_Description" class="control-label">Description</label>
+                            @* <input asp-for="Stationery_Description" class="form-control" /> *@
+                            <textarea asp-for="Stationery_Description" class="form-control"></textarea>
+                            <span asp-validation-for="Stationery_Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label asp-for="Stationery_Image" class="control-label">Image</label>
+                            <div class="image-upload">
+                                <input name="Stationery_Image" type="file" class="form-control" required />
+                                <span asp-validation-for="Stationery_Image" class="text-danger"></span>
+                                <div class="image-uploads">
+                                    <img src="~/assets/img/icons/upload.svg" alt="img">
+                                    <h4>Drag and drop a file to upload</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-submit me-2" />
+                    <a href="@Url.Action("stationery","Admin_")" class="btn btn-cancel">Cancel</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

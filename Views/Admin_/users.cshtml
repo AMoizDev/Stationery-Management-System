@@ -1,0 +1,234 @@
+﻿@model IEnumerable<Stationery_Management_System.Models.users>
+
+@* @{
+    ViewData["Title"] = "users";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+<h1>users</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserLimits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPassword)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.Roles.UserRoleName)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserLimits)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedBy.UserEmail)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.uesrId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.uesrId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.uesrId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+ *@
+
+
+@{
+    ViewData["Title"] = "users";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+    var userregister = TempData["Addusers"] as string;
+    var editMessage = TempData["user_Edit"] as string;
+    var DeleteMessage = TempData["user_Delete"] as string;
+}
+
+<div class="container my-3">
+    
+    <h4 class="text-success">@userregister</h4>
+    <h4 class="text-success">@editMessage</h4>
+    <h4 class="text-danger">@DeleteMessage</h4>
+
+
+    <div class="page-header">
+        <div class="page-title">
+            <h4>users List</h4>
+            <h6>Manage your users</h6>
+        </div>
+        <div class="page-btn">
+            <a asp-action="Addusers" class="btn btn-added">
+                <img src="~/assets/img/icons/plus.svg" alt="img"
+                     class="me-1">Add New users
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-top">
+                <div class="search-set">
+
+                    <div class="search-input">
+                        <a class="btn btn-searchset">
+                            <img src="~/assets/img/icons/search-white.svg"
+                                 alt="img">
+                        </a>
+                    </div>
+                </div>
+                <div class="wordset">
+                    <ul>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                                <img src="~/assets/img/icons/pdf.svg" alt="img">
+                            </a>
+                        </li>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel" asp-action="GetStationeryReport">
+                                <img src="~/assets/img/icons/excel.svg" alt="img">
+                            </a>
+                        </li>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                                <img src="~/assets/img/icons/printer.svg" alt="img">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="table-responsive">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.userId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserEmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserLimits)
+                </th>
+
+                @*  <th> 
+                 @Html.DisplayNameFor(model => model.UserPassword)
+             </th> *@
+                <th>
+                @Html.DisplayNameFor(model => model.Roles)
+                    
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddedBy)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserLimits)
+                    </td>
+
+                    @*  <td>
+                @Html.DisplayFor(modelItem => item.UserPassword)
+            </td> *@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Roles.UserRoleName)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddedBy.UserName)
+                    </td>
+                    @*   <td>
+
+
+                        <a asp-action="user_Edit" asp-route-id="@item.uesrId">Edit</a> |
+                        <a asp-action="user_Detail" asp-route-id="@item.uesrId">Details</a> |
+                        <a asp-action="user_Delete" asp-route-id="@item.uesrId">Delete</a>
+            </td> *@
+
+                    <td>
+                        <a class="me-3" asp-action="user_Detail" asp-route-id="@item.userId">
+                            <img src="~/assets/img/icons/eye.svg" alt="img">
+                        </a>
+                        <a class="me-3" asp-action="user_Edit" asp-route-id="@item.userId">
+                            <img src="~/assets/img/icons/edit.svg" alt="img">
+                        </a>
+
+                                    @if (item.Roles.UserRoleId == 1){
+                        <a class="confirm-text" asp-action="user_Delete" asp-route-id="@item.userId">
+                            <img src="~/assets/img/icons/delete.svg" alt="img">
+                        </a>
+                                    }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+            </div>
+
+        </div>
+    </div>
+</div>

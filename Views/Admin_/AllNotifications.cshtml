@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Stationery_Management_System.Models.Notification>
+
+@{
+    ViewData["Title"] = "All Notifications";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+<div class="content">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>All Notifications</h4>
+            <h6>View your all activities</h6>
+        </div>
+    </div>
+
+    <div class="activity">
+        <div class="activity-box">
+            <ul class="activity-list">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <div class="activity-content">
+                            <div class="timeline-content">
+                                @* <span class="name">@Html.DisplayFor(modelItem => item.Message)</span> *@
+                                <span class="text-muted">(@Html.DisplayFor(modelItem => item.CreatedAt))</span>
+                                <span class="text-muted">User ID: @Html.DisplayFor(modelItem => item.UserId)</span>
+
+                                <div id="notification-@item.Id">
+                                    <span>@item.Message</span>
+                                    <button class="delete-notification text-danger border-0 bg-transparent" data-id="@item.Id">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Latest jQuery -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+          $(document).on("click", ".delete-notification", function (e) {
+        e.preventDefault();
+
+        var id = $(this).data("id");
+
+        $.ajax({
+            url: "@Url.Action("DeleteSingleNotification", "Admin_")", // ✅ Corrected
+            type: "POST",
+            data: { id: id }, // ✅ Send ID properly
+            success: function (response) {
+                if (response.success) {
+                    alert("Notification deleted successfully");
+                    location.reload(); // ✅ Reload page to reflect changes
+                } else {
+                    alert("Failed: " + response.message);
+                }
+            },
+            error: function () {
+                alert("Failed to delete the notification.");
+            }
+        });
+    });
+
+
+</script>

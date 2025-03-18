@@ -1,0 +1,84 @@
+﻿@model Stationery_Management_System.Models.users
+
+@{
+    ViewData["Title"] = "user_Detail";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+<div class="container my-4">
+
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h4>User Details</h4>
+                <h6>Full details of a User</h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                       @*  <div class="bar-code-view">
+                            <img src="~/stationeyImages/@Html.DisplayFor(model => model.Stationery_Image)" style="height:80px; width:110px;" alt=" @Html.DisplayNameFor(model => model.Stationery_Name)">
+                            <a class="printimg">
+                                <img src="~/assets/img/icons/printer.svg" alt="print">
+                            </a>
+                        </div> *@
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserPhone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserPhone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserPassword)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserPassword)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Roles)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Roles.UserRoleName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserLimits)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserLimits)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddedBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddedBy.UserName)
+        </dd>
+    </dl>
+</div>
+                    <div class="ms-4 mb-2">
+    <a asp-action="user_Edit" asp-route-id="@Model?.userId">Edit</a> |
+    <a asp-action="users">Back to List</a>
+</div>
+  </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

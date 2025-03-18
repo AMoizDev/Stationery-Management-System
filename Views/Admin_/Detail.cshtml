@@ -1,0 +1,74 @@
+﻿@model Stationery_Management_System.Models.Stationery
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+
+<div class="container my-4">
+   
+        <div class="content">
+            <div class="page-header">
+                <div class="page-title">
+                <h4>Stationery Details</h4>
+                <h6>Full details of a Stationery</h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="bar-code-view">
+                            <img src="~/stationeyImages/@Html.DisplayFor(model => model.Stationery_Image)" style="height:80px; width:110px;" alt=" @Html.DisplayNameFor(model => model.Stationery_Name)">
+                                <a class="printimg">
+                                    <img src="~/assets/img/icons/printer.svg" alt="print">
+                                </a>
+                            </div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Stationery_Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stationery_Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Stationery_Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stationery_Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Stationery_Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stationery_Price)
+        </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Stationery_Quantity)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Stationery_Quantity)
+                            </dd>
+      @*   <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Stationery_Image)
+        </dt> *@
+        @* <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Stationery_Image)
+        </dd> *@
+    </dl>
+</div>
+<div class="ms-4 mb-2">
+    <a asp-action="Edit" asp-route-id="@Model?.Stationery_Id">Edit</a> |
+    <a asp-action="stationery">Back to List</a>
+</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+

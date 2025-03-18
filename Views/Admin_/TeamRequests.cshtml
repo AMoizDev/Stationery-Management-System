@@ -1,0 +1,170 @@
+﻿@model IEnumerable<Stationery_Management_System.Models.Request>
+
+@{
+    ViewData["Title"] = "TeamRequests";
+    Layout = "~/Views/Shared/Admin-layout.cshtml";
+}
+
+
+<div class="container my-3">
+    <div class="page-header">
+        <div class="page-title">
+            <h4>Request List</h4>
+            <h6>Manage your Team Requests</h6>
+        </div>
+ 
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-top">
+                <div class="search-set">
+
+                    <div class="search-input">
+                        <a class="btn btn-searchset">
+                            <img src="~/assets/img/icons/search-white.svg"
+                                 alt="img">
+                        </a>
+                    </div>
+                </div>
+                <div class="wordset">
+                    <ul>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="pdf">
+                                <img src="~/assets/img/icons/pdf.svg" alt="img">
+                            </a>
+                        </li>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="excel" asp-action="GetStationeryReport">
+                                <img src="~/assets/img/icons/excel.svg" alt="img">
+                            </a>
+                        </li>
+                        <li>
+                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="print">
+                                <img src="~/assets/img/icons/printer.svg" alt="img">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.userId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stationery)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.userId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stationery.Stationery_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UserEmail)
+            </td>
+                <td>
+                    <span class="badge @(item.status == "Accepted" ? "bg-success" : (item.status == "Rejected" ? "bg-danger" : "bg-warning"))">
+                        @item.status
+                    </span>
+                </td>
+                <td>
+                    @if (Context.Session.GetInt32("Role") == 2) // Admin Only
+                    {
+                        @if (item.status == "Pending")
+                        {
+                                            <div class="d-flex ms-1 me-1">
+                            <button class="btn ms-1 btn-success approve-btn" data-id="@item.requestId">Accept</button>
+                            <button class="btn ms-1 btn-danger reject-btn" data-id="@item.requestId">Reject</button>
+                                            </div>
+                        }
+                        else
+                        {
+                           
+                            <button class="btn d-none btn-success approve-btn" data-id="@item.requestId" disabled>Accept</button>
+                            <button class="btn d-none btn-danger reject-btn" data-id="@item.requestId" disabled>Reject</button>
+
+                        }
+                    }
+                </td>
+                @* <td>
+                    <a asp-action="Edit" asp-route-id="@item.requestId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.requestId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.requestId">Delete</a>
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".approve-btn").click(function () {
+            let requestId = $(this).data("id");
+            updateRequestStatus(requestId, "Accepted");
+        });
+
+        $(".reject-btn").click(function () {
+            let requestId = $(this).data("id");
+            updateRequestStatus(requestId, "Rejected");
+        });
+
+        function updateRequestStatus(requestId, status) {
+            $.ajax({
+                url: "@Url.Action("UpdateRequestStatus", "Admin_")",
+                type: "POST",
+                data: { requestId: requestId, status: status },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload(); // Refresh the page
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                },
+                error: function () {
+                    alert("Failed to update request status.");
+                }
+            });
+        }
+    });
+</script>
