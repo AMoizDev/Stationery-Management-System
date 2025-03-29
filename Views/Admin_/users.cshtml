@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<Stationery_Management_System.Models.users>
 
+
+@{
+    var role = Context.Session.GetInt32("Role");
+
+}
 @* @{
     ViewData["Title"] = "users";
     Layout = "~/Views/Shared/Admin-layout.cshtml";
@@ -217,11 +222,12 @@
                             <img src="~/assets/img/icons/edit.svg" alt="img">
                         </a>
 
-                                    @if (item.Roles.UserRoleId == 1){
-                        <a class="confirm-text" asp-action="user_Delete" asp-route-id="@item.userId">
+                                    @if (role == 1)
+                                    {
+                                        <a class="confirm-text" asp-action="user_Delete" asp-route-id="@item.userId">
                             <img src="~/assets/img/icons/delete.svg" alt="img">
                         </a>
-                                    }
+                                    }        
                     </td>
                 </tr>
             }
